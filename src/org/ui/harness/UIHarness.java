@@ -4,10 +4,14 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 public class UIHarness
 {
@@ -24,11 +28,15 @@ public class UIHarness
 
             public ExtendedJPanel02 jpanel02 = new ExtendedJPanel02(this);
 
+            public ExtendedJPanel03 jpanel03 = new ExtendedJPanel03(this);
+
             public ExtendedJFrame()
             {
                 new Settings(this);
 
                 new Hierarchy(this);
+
+                new Listeners(this);
 
                 //
 
@@ -36,7 +44,9 @@ public class UIHarness
 
                 this.getContentPane().add(jpanel02);
 
-                this.getContentPane().setBackground(Color.GRAY.darker());
+                //this.getContentPane().add(jpanel03);
+
+                this.getContentPane().setBackground(Color.GRAY.darker().darker());
             }
 
             public static class Settings
@@ -47,11 +57,11 @@ public class UIHarness
                 {
                     this.jframe = jframe;
 
-                    this.jframe.setTitle("Java TM");
+                    this.jframe.setTitle("Java Swing ™");
 
                     this.jframe.setLayout(new FlowLayout());
 
-                    this.jframe.setBackground(Color.GRAY.darker());
+                    //this.jframe.setBackground(Color.GRAY.darker().darker());
 
                     this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -69,15 +79,19 @@ public class UIHarness
                 {
                     this.jframe = jframe;
 
-                    JMenuBar bar = new JMenuBar();
-
-                    bar.add(new JMenu("File"));
-
-                    bar.add(new JMenu("Edit"));
-
-                    this.jframe.setJMenuBar(bar);
+                    this.jframe.setJMenuBar(new ExtendedJMenuBar());
 
                     this.jframe.validate();
+                }
+            }
+
+            public static class Listeners
+            {
+                ExtendedJFrame jframe;
+
+                public Listeners(ExtendedJFrame jframe)
+                {
+                    this.jframe = jframe;
                 }
             }
         }
@@ -97,6 +111,8 @@ public class UIHarness
                 new Settings(this);
 
                 new Hierarchy(this);
+
+                new Listeners(this);
             }
 
             public static class Settings
@@ -122,6 +138,16 @@ public class UIHarness
                     this.jpanel01.add(this.jpanel01.jbutton01);
 
                     this.jpanel01.add(this.jpanel01.jbutton02);
+                }
+            }
+
+            public static class Listeners
+            {
+                ExtendedJPanel01 jpanel01;
+
+                public Listeners(ExtendedJPanel01 jpanel01)
+                {
+                    this.jpanel01 = jpanel01;
                 }
             }
 
@@ -163,11 +189,17 @@ public class UIHarness
 
             public ExtendedJButton04 jbutton04 = new ExtendedJButton04();
 
+            public ExtendedJTree jtree = new ExtendedJTree(new DefaultMutableTreeNode("Java Swing ™"));
+
             public ExtendedJPanel02(ExtendedJFrame jframe)
             {
                 this.jframe = jframe;
 
                 new Settings(this);
+
+                new Hierarchy(this);
+
+                new Listeners(this);
             }
 
             public static class Settings
@@ -178,7 +210,31 @@ public class UIHarness
                 {
                     this.jpanel02 = jpanel02;
 
-                    this.jpanel02.setBackground(new Color(48,48,48));
+                    this.jpanel02.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                    this.jpanel02.setBackground(new Color(8,8,8));
+                }
+            }
+
+            public static class Hierarchy
+            {
+                ExtendedJPanel02 jpanel02;
+
+                public Hierarchy(ExtendedJPanel02 jpanel02)
+                {
+                    this.jpanel02 = jpanel02;
+
+                    this.jpanel02.add(this.jpanel02.jtree);
+                }
+            }
+
+            public static class Listeners
+            {
+                ExtendedJPanel02 jpanel02;
+
+                public Listeners(ExtendedJPanel02 jpanel02)
+                {
+                    this.jpanel02 = jpanel02;
                 }
             }
 
@@ -206,7 +262,7 @@ public class UIHarness
             {
                 int width = this.jframe.getWidth()-24;
 
-                int height = this.jframe.getHeight()-253;
+                int height = this.jframe.getHeight()-284;
 
                 return new Dimension(width, height);
             }
@@ -214,9 +270,52 @@ public class UIHarness
 
         public static class ExtendedJPanel03 extends JPanel
         {
+            public ExtendedJFrame jframe;
+
             public ExtendedJButton05 jbutton05 = new ExtendedJButton05();
 
             public ExtendedJButton06 jbutton06 = new ExtendedJButton06();
+
+            public ExtendedJPanel03(ExtendedJFrame jframe)
+            {
+                this.jframe = jframe;
+
+                new Settings(this);
+
+                new Hierarchy(this);
+
+                new Listeners(this);
+            }
+
+            public static class Settings
+            {
+                public ExtendedJPanel03 jpanel03;
+
+                public Settings(ExtendedJPanel03 jpanel03)
+                {
+                    this.jpanel03 = jpanel03;
+                }
+            }
+
+            public static class Hierarchy
+            {
+                public ExtendedJPanel03 jpanel03;
+
+                public Hierarchy(ExtendedJPanel03 jpanel03)
+                {
+                    this.jpanel03 = jpanel03;
+                }
+            }
+
+            public static class Listeners
+            {
+                public ExtendedJPanel03 jpanel03;
+
+                public Listeners(ExtendedJPanel03 jpanel03)
+                {
+                    this.jpanel03 = jpanel03;
+                }
+            }
         }
 
         public static class ExtendedJMenuBar extends JMenuBar
@@ -225,9 +324,19 @@ public class UIHarness
 
             public ExtendedJMenu02 jmenu02 = new ExtendedJMenu02();
 
+            public ExtendedJMenu03 jmenu03 = new ExtendedJMenu03();
+
             public ExtendedJMenuBar()
             {
+                this.add(jmenu01);
 
+                this.add(jmenu02);
+
+                this.add(jmenu03);
+
+                this.setBorder(new SilentBorder());
+
+                this.setFocusable(false);
             }
 
             public static class ExtendedJMenu01 extends JMenu
@@ -238,7 +347,45 @@ public class UIHarness
 
                 public ExtendedJMenu01()
                 {
+                    super("File .");
 
+                    this.add(this.jmenuitem01);
+
+                    this.add(this.jmenuitem02);
+                }
+
+                @Override
+                public void paintComponent(Graphics graphics)
+                {
+                    super.paintComponent(graphics);
+
+                    Image image;
+
+                    try
+                    {
+                        if(this.model.isSelected())
+                        {
+                            graphics.setColor(new Color(130,130,130));
+
+                            graphics.fillRect(0,0,getWidth()-1, getHeight()-1);
+                        }
+                        else
+                        {
+                            graphics.setColor(new Color(48,48,48));
+
+                            graphics.fillRect(0,0,getWidth()+10, getHeight()-1);
+                        }
+
+                        graphics.setColor(new Color(148,148,148));
+
+                        graphics.setFont(new Font("Georgia", Font.PLAIN, 12));
+
+                        graphics.drawString("File",8,14);
+                    }
+                    catch (Exception e)
+                    {
+                        System.err.println(e);
+                    }
                 }
             }
 
@@ -250,7 +397,95 @@ public class UIHarness
 
                 public ExtendedJMenu02()
                 {
+                    super("Edit ");
 
+                    this.add(this.jmenuitem03);
+
+                    this.add(this.jmenuitem04);
+                }
+
+                @Override
+                public void paintComponent(Graphics graphics)
+                {
+                    super.paintComponent(graphics);
+
+                    Image image;
+
+                    try
+                    {
+                        if(this.model.isSelected())
+                        {
+                            graphics.setColor(new Color(148,148,148));
+
+                            graphics.fillRect(0,0,getWidth()-1, getHeight()-1);
+                        }
+                        else
+                        {
+                            graphics.setColor(new Color(48,48,48));
+
+                            graphics.fillRect(0,0,getWidth()+10, getHeight()-1);
+                        }
+
+                        graphics.setColor(new Color(148,148,148));
+
+                        graphics.setFont(new Font("Georgia", Font.PLAIN, 12));
+
+                        graphics.drawString("Edit",8,14);
+                    }
+                    catch (Exception e)
+                    {
+                        System.err.println(e);
+                    }
+                }
+            }
+
+            public static class ExtendedJMenu03 extends JMenu
+            {
+                public ExtendedJMenuItem05 jmenuitem05 = new ExtendedJMenuItem05();
+
+                public ExtendedJMenuItem06 jmenuitem06 = new ExtendedJMenuItem06();
+
+                public ExtendedJMenu03()
+                {
+                    super("Settings ");
+
+                    this.add(this.jmenuitem05);
+
+                    this.add(this.jmenuitem06);
+                }
+
+                @Override
+                public void paintComponent(Graphics graphics)
+                {
+                    super.paintComponent(graphics);
+
+                    Image image;
+
+                    try
+                    {
+                        if(this.model.isSelected())
+                        {
+                            graphics.setColor(new Color(148,148,148));
+
+                            graphics.fillRect(0,0,getWidth()-1, getHeight()-1);
+                        }
+                        else
+                        {
+                            graphics.setColor(new Color(48,48,48));
+
+                            graphics.fillRect(0,0,getWidth()+10, getHeight()-1);
+                        }
+
+                        graphics.setColor(new Color(148,148,148));
+
+                        graphics.setFont(new Font("Georgia", Font.PLAIN, 12));
+
+                        graphics.drawString("Settings",8,14);
+                    }
+                    catch (Exception e)
+                    {
+                        System.err.println(e);
+                    }
                 }
             }
 
@@ -283,6 +518,39 @@ public class UIHarness
                 public ExtendedJMenuItem04()
                 {
                     super("ExtendedJMenuItem04");
+                }
+            }
+
+            public static class ExtendedJMenuItem05 extends JMenuItem
+            {
+                public ExtendedJMenuItem05()
+                {
+                    super("ExtendedJMenuItem05");
+                }
+            }
+
+            public static class ExtendedJMenuItem06 extends JMenuItem
+            {
+                public ExtendedJMenuItem06()
+                {
+                    super("ExtendedJMenuItem06");
+                }
+            }
+
+            @Override
+            public void paintComponent(Graphics graphics)
+            {
+                super.paintComponent(graphics);
+
+                try
+                {
+                    graphics.setColor(new Color(48,48,48));
+
+                    graphics.fillRect(0,0,getWidth()-1, getHeight()-1);
+                }
+                catch (Exception e)
+                {
+                    System.err.println(e);
                 }
             }
         }
@@ -332,7 +600,7 @@ public class UIHarness
                         graphics.setColor(Color.GRAY);
                     }
 
-                    graphics.setFont(new Font("Calibri", Font.PLAIN, 12));
+                    graphics.setFont(new Font("Georgia", Font.PLAIN, 12));
 
                     graphics.drawString("ExtendedJButton01",10,18);
 
@@ -353,7 +621,7 @@ public class UIHarness
 
                     jbutton01.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-                    jbutton01.setPreferredSize(new Dimension(120,30));
+                    jbutton01.setPreferredSize(new Dimension(140,30));
                 }
             }
 
@@ -453,7 +721,7 @@ public class UIHarness
                         graphics.setColor(Color.GRAY);
                     }
 
-                    graphics.setFont(new Font("Calibri", Font.PLAIN, 12));
+                    graphics.setFont(new Font("Georgia", Font.PLAIN, 12));
 
                     graphics.drawString("ExtendedJButton02",10,18);
                 }
@@ -475,7 +743,7 @@ public class UIHarness
 
                     jbutton02.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-                    jbutton02.setPreferredSize(new Dimension(120,30));
+                    jbutton02.setPreferredSize(new Dimension(140,30));
                 }
             }
         }
@@ -498,6 +766,114 @@ public class UIHarness
         public static class ExtendedJButton06 extends JButton
         {
 
+        }
+
+        public static class ExtendedJTree extends JTree
+        {
+            public DefaultMutableTreeNode root;
+
+            public DefaultMutableTreeNode users;
+
+            public DefaultMutableTreeNode groups;
+
+            public DefaultMutableTreeNode developers;
+
+            public DefaultMutableTreeNode rooms;
+
+            public ExtendedJTree(DefaultMutableTreeNode root)
+            {
+                super(root);
+
+                this.setCellRenderer(new ExtendedJTreeCellRenderer());
+
+                root.add(users = new DefaultMutableTreeNode("Users"));
+
+                users.add(new DefaultMutableTreeNode("John Stephens"));
+
+                users.add(new DefaultMutableTreeNode("Davis Johnston"));
+
+                users.add(new DefaultMutableTreeNode("William Draer"));
+
+                root.add(groups = new DefaultMutableTreeNode("Groups"));
+
+                groups.add(new DefaultMutableTreeNode("Open JDK"));
+
+                groups.add(new DefaultMutableTreeNode("Oracle JDK"));
+
+                root.add(developers = new DefaultMutableTreeNode("Developers"));
+
+                developers.add(new DefaultMutableTreeNode("John Stephens"));
+
+                developers.add(new DefaultMutableTreeNode("Davis Johnston"));
+
+                developers.add(new DefaultMutableTreeNode("William Draer"));
+
+                root.add(rooms = new DefaultMutableTreeNode("Rooms"));
+
+                rooms.add(new DefaultMutableTreeNode("Casual"));
+
+                rooms.add(new DefaultMutableTreeNode("Java Developers"));
+
+                rooms.add(new DefaultMutableTreeNode("Python Developers"));
+
+                //
+
+                this.setBackground(new Color(8,8,8));
+            }
+
+            public static class ExtendedJTreeCellRenderer extends DefaultTreeCellRenderer
+            {
+                @Override
+                public Component getTreeCellRendererComponent(JTree tree, Object value, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus)
+                {
+                    JComponent c = (JComponent) super.getTreeCellRendererComponent(tree, value, isSelected, expanded, leaf, row, hasFocus);
+
+                    Graphics graphics = c.getGraphics();
+
+                    if(graphics!=null) graphics.setColor(Color.GRAY);
+
+                    c.setForeground(new Color(140,140,140));
+
+                    c.setBackground(new Color(8,8,8));
+
+                    c.setFont(new Font("Georgia", Font.PLAIN, 12));
+
+                    c.setOpaque(true);
+
+                    //
+
+                    this.setClosedIcon(new ImageIcon("C:\\Users\\Mr. Max Rupplin\\Desktop\\Images\\folder001.png"));
+
+                    //this.setOpenIcon(new ImageIcon(""));
+
+                    //this.setLeafIcon(new ImageIcon(""));
+
+                    //
+
+                    return c;
+                }
+            }
+        }
+
+        public static class SilentBorder implements Border
+        {
+            @Override
+            public void paintBorder(Component c, Graphics graphics, int x, int y, int width, int height)
+            {
+                graphics.drawRoundRect(x, y, width-1, height-1, 0, 0);
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c)
+            {
+                return new Insets(5,5,5,5);
+            }
+
+            @Override
+            public boolean isBorderOpaque()
+            {
+                return true;
+            }
         }
 
         public static class RoundedBorder implements Border

@@ -20,8 +20,6 @@ public class Main
                 //UIHarness.Test03 test03 = new UIHarness.Test03();
             }
         });
-
-
     }
 }
 
