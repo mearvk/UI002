@@ -44,7 +44,7 @@ public class UIHarness
 
                 this.getContentPane().add(jpanel02);
 
-                //this.getContentPane().add(jpanel03);
+                this.getContentPane().add(jpanel03);
 
                 this.getContentPane().setBackground(Color.GRAY.darker().darker());
             }
@@ -60,8 +60,6 @@ public class UIHarness
                     this.jframe.setTitle("Java Swing ™");
 
                     this.jframe.setLayout(new FlowLayout());
-
-                    //this.jframe.setBackground(Color.GRAY.darker().darker());
 
                     this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
