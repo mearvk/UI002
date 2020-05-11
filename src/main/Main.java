@@ -1,7 +1,6 @@
 package main;
 
 import org.ui.harness.UIHarness;
-
 import javax.swing.*;
 
 public class Main

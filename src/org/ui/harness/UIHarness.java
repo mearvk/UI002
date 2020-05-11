@@ -10,8 +10,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.util.List;
-import java.util.Map;
 
 public class UIHarness
 {
@@ -183,9 +181,9 @@ public class UIHarness
         {
             public ExtendedJFrame jframe;
 
-            public ExtendedJButton03 jbutton03 = new ExtendedJButton03();
+            public ExtendedJButton03 jbutton03 = new ExtendedJButton03(this);
 
-            public ExtendedJButton04 jbutton04 = new ExtendedJButton04();
+            public ExtendedJButton04 jbutton04 = new ExtendedJButton04(this);
 
             public ExtendedJTree jtree = new ExtendedJTree(new DefaultMutableTreeNode("Java Swing ™"));
 
@@ -737,8 +735,6 @@ public class UIHarness
                 {
                     jbutton02.setBorder(new EmptyBorder(5,5,5,5));
 
-                    //jbutton02.setBorder(new RoundedBorder());
-
                     jbutton02.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
                     jbutton02.setPreferredSize(new Dimension(140,30));
@@ -748,12 +744,130 @@ public class UIHarness
 
         public static class ExtendedJButton03 extends JButton
         {
+            ExtendedJPanel02 jpanel02;
 
+            public ExtendedJButton03(ExtendedJPanel02 jpanel02)
+            {
+                this.jpanel02 = jpanel02;
+
+                new Settings(this);
+            }
+
+            @Override
+            public void paintComponent(Graphics graphics)
+            {
+                super.paintComponent(graphics);
+
+                try
+                {
+                    if(this.model.isRollover() || this.model.isPressed())
+                    {
+                        graphics.drawImage(ImageIO.read(new File("C:\\Users\\Mr. Max Rupplin\\Desktop\\Images\\button003.png")),0,0,null);
+
+                        if(this.model.isRollover())
+                        {
+                            graphics.setColor(Color.GRAY.brighter());
+                        }
+
+                        if(this.model.isPressed())
+                        {
+                            graphics.setColor(new Color(200,200,200));
+                        }
+                    }
+                    else
+                    {
+                        graphics.drawImage(ImageIO.read(new File("C:\\Users\\Mr. Max Rupplin\\Desktop\\Images\\button002.png")),0,0,null);
+
+                        graphics.setColor(Color.GRAY);
+                    }
+
+                    graphics.setFont(new Font("Georgia", Font.PLAIN, 12));
+
+                    graphics.drawString("ExtendedJButton02",10,18);
+                }
+                catch(Exception e)
+                {
+                    System.err.println(e);
+                }
+            }
+
+            public static class Settings
+            {
+                ExtendedJButton03 jbutton03;
+
+                public Settings(ExtendedJButton03 jbutton03)
+                {
+                    jbutton03.setBorder(new EmptyBorder(5,5,5,5));
+
+                    jbutton03.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+                    jbutton03.setPreferredSize(new Dimension(140,30));
+                }
+            }
         }
 
         public static class ExtendedJButton04 extends JButton
         {
+            ExtendedJPanel02 jpanel02;
 
+            public ExtendedJButton04(ExtendedJPanel02 jpanel02)
+            {
+                this.jpanel02 = jpanel02;
+
+                new Settings(this);
+            }
+
+            @Override
+            public void paintComponent(Graphics graphics)
+            {
+                super.paintComponent(graphics);
+
+                try
+                {
+                    if(this.model.isRollover() || this.model.isPressed())
+                    {
+                        graphics.drawImage(ImageIO.read(new File("C:\\Users\\Mr. Max Rupplin\\Desktop\\Images\\button003.png")),0,0,null);
+
+                        if(this.model.isRollover())
+                        {
+                            graphics.setColor(Color.GRAY.brighter());
+                        }
+
+                        if(this.model.isPressed())
+                        {
+                            graphics.setColor(new Color(200,200,200));
+                        }
+                    }
+                    else
+                    {
+                        graphics.drawImage(ImageIO.read(new File("C:\\Users\\Mr. Max Rupplin\\Desktop\\Images\\button002.png")),0,0,null);
+
+                        graphics.setColor(Color.GRAY);
+                    }
+
+                    graphics.setFont(new Font("Georgia", Font.PLAIN, 12));
+
+                    graphics.drawString("ExtendedJButton02",10,18);
+                }
+                catch(Exception e)
+                {
+                    System.err.println(e);
+                }
+            }
+
+            public static class Settings
+            {
+                ExtendedJButton04 jbutton04;
+
+                public Settings(ExtendedJButton04 jbutton04)
+                {
+                    jbutton04.setBorder(new EmptyBorder(5,5,5,5));
+
+                    jbutton04.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+                    jbutton04.setPreferredSize(new Dimension(140,30));
+                }
+            }
         }
 
         public static class ExtendedJButton05 extends JButton
@@ -782,7 +896,11 @@ public class UIHarness
             {
                 super(root);
 
+                //
+
                 this.setCellRenderer(new ExtendedJTreeCellRenderer());
+
+                //
 
                 root.add(users = new DefaultMutableTreeNode("Users"));
 
@@ -826,28 +944,14 @@ public class UIHarness
                 {
                     JComponent c = (JComponent) super.getTreeCellRendererComponent(tree, value, isSelected, expanded, leaf, row, hasFocus);
 
-                    Graphics graphics = c.getGraphics();
-
-                    if(graphics!=null) graphics.setColor(Color.GRAY);
-
-                    c.setForeground(new Color(140,140,140));
+                    c.setForeground(new Color(40,40,40));
 
                     c.setBackground(new Color(8,8,8));
 
                     c.setFont(new Font("Georgia", Font.PLAIN, 12));
 
                     c.setOpaque(true);
-
-                    //
-
-                    this.setClosedIcon(new ImageIcon("C:\\Users\\Mr. Max Rupplin\\Desktop\\Images\\folder001.png"));
-
-                    //this.setOpenIcon(new ImageIcon(""));
-
-                    //this.setLeafIcon(new ImageIcon(""));
-
-                    //
-
+                    
                     return c;
                 }
             }
